@@ -36,15 +36,21 @@ struct ContentView: View {
                     answerReceived = true
                     checkInput(userIsPrime: true)
                 }
+                .disabled(answerReceived)
                 .font(.title)
                 
                 Button("Non Prime") {
                     answerReceived = true
                     checkInput(userIsPrime: false)
                 }
+                .disabled(answerReceived)
                 .font(.title)
             }
             
+            
+            Button("Reset") {
+                resetGame()
+            }
             
             
             if answerReceived{
@@ -61,7 +67,9 @@ struct ContentView: View {
         }
         
         .alert("Round Summary", isPresented: $showAlert){
-            Button("x", role: .cancel){}
+            Button("OK", role: .cancel){
+                resetGame()
+            }
         } message:{
             Text("Summary\nPrime numbers identified:\nCorrect: \(correctGuesses) Incorrect: \(incorrectGuesses)")
         }
@@ -139,6 +147,16 @@ struct ContentView: View {
             outputRoundSummary()
             
         }
+    }
+    
+    // Reset
+    func resetGame(){
+        round = 0
+        correctGuesses = 0
+        incorrectGuesses = 0
+        number = Int.random(in: 0...100)
+        countdownTimer = 5
+        answerReceived = false
     }
 }
 
