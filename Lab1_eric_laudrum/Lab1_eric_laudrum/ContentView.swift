@@ -17,6 +17,7 @@ struct ContentView: View {
     @State private var countdownTimer: Int = 5
     @State private var answerReceived: Bool = false
     @State private var showAlert = false
+    @State private var guessIsCorrect: Bool = false
     
     let timer = Timer.publish( every: 1, on: .main, in: .common).autoconnect()
     
@@ -114,8 +115,10 @@ struct ContentView: View {
         
         if userIsPrime == numberIsPrime{
             correctGuesses += 1
+            guessIsCorrect = true
         } else {
             incorrectGuesses += 1
+            guessIsCorrect = false
         }
     }
     
