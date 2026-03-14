@@ -26,10 +26,16 @@ struct ContentView: View {
             Text("Is it Prime?")
                 .font(.headline)
             
+            Spacer()
+            
+            // Random Number
             Text("\(number)")
                 .font(.system(size: 50, weight: .bold))
             
+            
+            // Timer
             Text("Time Remaining: \(countdownTimer)")
+                .padding()
             
             HStack(spacing: 40){
                 Button("Prime") {
