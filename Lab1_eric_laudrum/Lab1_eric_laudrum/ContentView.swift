@@ -6,8 +6,14 @@
 //
 
 import SwiftUI
+import Combine
 
 struct ContentView: View {
+    
+    @State private var number: Int = Int.random(in: 0...100)
+    @State private var correctGuesses: Int = 0
+    @State private var incorrectGuesses: Int = 0
+    
     var body: some View {
         VStack {
             Image(systemName: "globe")
@@ -40,7 +46,16 @@ struct ContentView: View {
     // Handle the user's response
         // record the answer
         // result displayed with green check or red x
+    func checkInput(userIsPrime: Bool){
         
+        let numberIsPrime = checkIsPrime(number)
+        
+        if userIsPrime == numberIsPrime{
+            correctGuesses += 1
+        } else {
+            incorrectGuesses += 1
+        }
+    }
     
     // Handle progress update
         // after 10 attempts, display dialogue with info on # of right and wrong answers
