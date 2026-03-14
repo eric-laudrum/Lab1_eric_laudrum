@@ -141,14 +141,18 @@ struct ContentView: View {
         // new numbers every 5 seconds
         // no answer = X
     func handleTimer(){
+        // There is still time remaining
         if countdownTimer > 0{
             countdownTimer -= 1
         }
         
+        // Time is up
         else{
-        
+            // Handle incorrect answer (none)
             if !answerReceived{
                 incorrectGuesses += 1
+                isUserCorrect = false
+                answerReceived = true
             }
             
             // Set the next round
