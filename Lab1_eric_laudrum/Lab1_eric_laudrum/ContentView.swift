@@ -64,7 +64,7 @@ struct ContentView: View {
     // Handle progress update
         // after 10 attempts, display dialogue with info on # of right and wrong answers
     func outputRoundSummary(){
-        if round == 10{
+        if round % 10 ==  0{
             print("Summary\n",
                   "Prime numbers identified:\n",
                   "Correct: ", correctGuesses,
@@ -74,10 +74,10 @@ struct ContentView: View {
         
     }
     
-    
     // Handle timer
         // new numbers every 5 seconds
         // no answer = X
+
     
     
 }
