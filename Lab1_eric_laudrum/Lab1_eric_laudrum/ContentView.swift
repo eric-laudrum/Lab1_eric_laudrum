@@ -15,10 +15,9 @@ struct ContentView: View {
     @State private var incorrectGuesses: Int = 0
     @State private var round: Int = 0
     @State private var countdownTimer: Int = 5
-    @State private var answerInput: Bool = false
+    @State private var answerReceived: Bool = false
     
-    
-    
+    let timer = Timer.publish( every: 1, on: .main, in: .common).autoconnect()
     
     var body: some View {
         VStack {
@@ -28,7 +27,11 @@ struct ContentView: View {
             Text("Hello, world!")
         }
         .padding()
+        .onReceive(timer) { _ in
+            handleTimer()
+        }
     }
+    
     
     // Check for prime number
     func checkIsPrime(_ number: Int) -> Bool{
@@ -82,19 +85,27 @@ struct ContentView: View {
     func handleTimer(){
         if countdownTimer > 0{
             countdownTimer -= 1
-        } else{
-            if !answerInput{
+        }
+        
+        else{
+        
+            if !answerReceived{
                 incorrectGuesses += 1
-                round += 1
-                
             }
+            
+            // Set the next round
+            round += 1
+            countdownTimer = 5
+            number = Int.random(in: 0...100)
+            answerReceived = false
+            
+            outputRoundSummary()
+            
         }
     }
-    
-    
-    
-    
 }
+
+
 
 #Preview {
     ContentView()
