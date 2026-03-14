@@ -66,7 +66,7 @@ struct ContentView: View {
             if answerReceived{
 
                 Image(systemName: isUserCorrect ? "checkmark.circle.fill" : "xmark.circle.fill")
-                    .foregroundColor(checkIsPrime(number) ? .green : .red)
+                    .foregroundColor(isUserCorrect ? .green : .red)
                     .font(.largeTitle)
                     .opacity(answerReceived ? 1 : 0)
             }
