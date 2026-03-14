@@ -16,19 +16,54 @@ struct ContentView: View {
     @State private var round: Int = 0
     @State private var countdownTimer: Int = 5
     @State private var answerReceived: Bool = false
+    @State private var showAlert = false
     
     let timer = Timer.publish( every: 1, on: .main, in: .common).autoconnect()
     
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        VStack(spacing: 25) {
+            
+            Text("Is it Prime?")
+                .font(.headline)
+            
+            Text("\(number)")
+                .font(.system(size: 50, weight: .bold))
+            
+            Text("Time Remaining: \(countdownTimer)")
+            
+            HStack(spacing: 40){
+                Button("Prime") {
+                    answerReceived = true
+                    checkInput(userIsPrime: true)
+                }
+                .font(.title)
+                
+                Button("Non Prime") {
+                    answerReceived = true
+                    checkInput(userIsPrime: false)
+                }
+                .font(.title)
+            }
+            
+            
+            
+            if answerReceived{
+                let isCorrect = (checkIsPrime(number) == true)
+                
+                Image(systemName: checkIsPrime(number) ? "checkmark.circle.fill" : "xmark.circle.fill")
+                    .foregroundColor(checkIsPrime(number) ? .green : .red)
+                    .font(.largeTitle)
+            }
         }
         .padding()
         .onReceive(timer) { _ in
             handleTimer()
+        }
+        
+        .alert("Round Summary", isPresented: $showAlert){
+            Button("x", role: .cancel){}
+        } message:{
+            Text("Summary\nPrime numbers identified:\nCorrect: \(correctGuesses) Incorrect: \(incorrectGuesses)")
         }
     }
     
@@ -69,12 +104,14 @@ struct ContentView: View {
     // Handle progress update
         // after 10 attempts, display dialogue with info on # of right and wrong answers
     func outputRoundSummary(){
-        if round % 10 ==  0{
+        if round > 0 && round % 10 ==  0{
             print("Summary\n",
                   "Prime numbers identified:\n",
                   "Correct: ", correctGuesses,
                   "Incorrect: ", incorrectGuesses
             )
+            
+            showAlert = true
         }
         
     }
