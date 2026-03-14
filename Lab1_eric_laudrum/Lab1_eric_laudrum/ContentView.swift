@@ -59,6 +59,7 @@ struct ContentView: View {
                 Image(systemName: checkIsPrime(number) ? "checkmark.circle.fill" : "xmark.circle.fill")
                     .foregroundColor(checkIsPrime(number) ? .green : .red)
                     .font(.largeTitle)
+                    .opacity(answerReceived ? 1 : 0)
             }
         }
         .padding()
