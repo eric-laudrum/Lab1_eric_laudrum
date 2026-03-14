@@ -60,6 +60,7 @@ struct ContentView: View {
             
             }
             
+            Spacer()
             
             Button("Reset") {
                 resetGame()
