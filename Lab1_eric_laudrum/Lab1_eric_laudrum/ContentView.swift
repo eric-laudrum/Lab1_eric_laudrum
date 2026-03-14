@@ -25,7 +25,10 @@ struct ContentView: View {
         VStack(spacing: 25) {
             
             Text("Is it Prime?")
-                .font(.headline)
+                .font(.system(size: 30, design: .rounded))
+                .foregroundColor(.primary)
+                .padding(.horizontal, 20)
+                .padding(.vertical, 8)
             
             Spacer()
             
