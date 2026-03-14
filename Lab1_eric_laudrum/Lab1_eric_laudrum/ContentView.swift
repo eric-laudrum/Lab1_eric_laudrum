@@ -38,6 +38,7 @@ struct ContentView: View {
                 }
                 .disabled(answerReceived)
                 .font(.title)
+                .buttonStyle(.bordered)
                 
                 Button("Non Prime") {
                     answerReceived = true
@@ -45,6 +46,8 @@ struct ContentView: View {
                 }
                 .disabled(answerReceived)
                 .font(.title)
+                .buttonStyle(.bordered)
+                .buttonStyle(.bordered)
             }
             
             
