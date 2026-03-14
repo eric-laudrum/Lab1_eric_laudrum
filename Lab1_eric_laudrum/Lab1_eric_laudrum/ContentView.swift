@@ -13,6 +13,10 @@ struct ContentView: View {
     @State private var number: Int = Int.random(in: 0...100)
     @State private var correctGuesses: Int = 0
     @State private var incorrectGuesses: Int = 0
+    @State private var round: Int = 0
+    
+    
+    
     
     var body: some View {
         VStack {
@@ -59,6 +63,16 @@ struct ContentView: View {
     
     // Handle progress update
         // after 10 attempts, display dialogue with info on # of right and wrong answers
+    func outputRoundSummary(){
+        if round == 10{
+            print("Summary\n",
+                  "Prime numbers identified:\n",
+                  "Correct: ", correctGuesses,
+                  "Incorrect: ", incorrectGuesses
+            )
+        }
+        
+    }
     
     
     // Handle timer
