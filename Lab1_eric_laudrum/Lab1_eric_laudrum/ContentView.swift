@@ -14,6 +14,8 @@ struct ContentView: View {
     @State private var correctGuesses: Int = 0
     @State private var incorrectGuesses: Int = 0
     @State private var round: Int = 0
+    @State private var countdownTimer: Int = 5
+    @State private var answerInput: Bool = false
     
     
     
@@ -77,7 +79,19 @@ struct ContentView: View {
     // Handle timer
         // new numbers every 5 seconds
         // no answer = X
-
+    func handleTimer(){
+        if countdownTimer > 0{
+            countdownTimer -= 1
+        } else{
+            if !answerInput{
+                incorrectGuesses += 1
+                round += 1
+                
+            }
+        }
+    }
+    
+    
     
     
 }
