@@ -54,7 +54,7 @@ struct ContentView: View {
                 .disabled(answerReceived)
                 .font(.title)
                 .buttonStyle(.bordered)
-                .buttonStyle(.bordered)
+            
             }
             
             
