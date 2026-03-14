@@ -63,9 +63,9 @@ struct ContentView: View {
             
             
             if answerReceived{
-                let isCorrect = (checkIsPrime(number) == true)
+                let isCorrect = checkIsPrime(number)
                 
-                Image(systemName: checkIsPrime(number) ? "checkmark.circle.fill" : "xmark.circle.fill")
+                Image(systemName: isCorrect ? "checkmark.circle.fill" : "xmark.circle.fill")
                     .foregroundColor(checkIsPrime(number) ? .green : .red)
                     .font(.largeTitle)
                     .opacity(answerReceived ? 1 : 0)
